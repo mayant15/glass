@@ -29,3 +29,9 @@ set(DUB_EXECUTABLE_SOURCES
 add_executable(dub-cli ${DUB_EXECUTABLE_SOURCES})
 target_link_libraries(dub-cli PUBLIC dub)
 
+###############################################################################
+# sample executables for testing
+###############################################################################
+
+add_executable(hello test/hello.cpp)
+
