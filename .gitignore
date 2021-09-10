@@ -1,0 +1,12 @@
+build
+.cache
+.idea
+.vscode
+.vs
+*.out
+*.exe
+*.log
+*.so
+*.o
+*.a
+
