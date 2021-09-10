@@ -1,33 +1,33 @@
 cmake_minimum_required(VERSION 3.18)
-project(dub)
+project(glass)
 set(CMAKE_CXX_STANDARD 17)
 
 # Generate a compilation database
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Include paths for all targets
-include_directories(${CMAKE_SOURCE_DIR}/dub/include)
+include_directories(${CMAKE_SOURCE_DIR}/glass/include)
 
 ###############################################################################
-# Core dub library
+# Core glass library
 ###############################################################################
 
-set(DUB_LIBRARY_SOURCES
-    dub/src/dub.cpp
+set(GLASS_LIBRARY_SOURCES
+    glass/src/glass.cpp
 )
 
-add_library(dub ${DUB_LIBRARY_SOURCES})
+add_library(glass ${GLASS_LIBRARY_SOURCES})
 
 ###############################################################################
-# dub cli executable 
+# glass cli executable 
 ###############################################################################
 
-set(DUB_EXECUTABLE_SOURCES
+set(GLASS_EXECUTABLE_SOURCES
     cli/src/main.cpp
 )
 
-add_executable(dub-cli ${DUB_EXECUTABLE_SOURCES})
-target_link_libraries(dub-cli PUBLIC dub)
+add_executable(glass-cli ${GLASS_EXECUTABLE_SOURCES})
+target_link_libraries(glass-cli PUBLIC glass)
 
 ###############################################################################
 # sample executables for testing

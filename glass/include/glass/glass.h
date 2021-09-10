@@ -11,25 +11,25 @@
 #include <iostream>
 #include <string>
 
-#define DUB_LOG_ERR(FMT, ...)    fprintf(stderr, "[ERROR ] " FMT "\n", ##__VA_ARGS__)
-#define DUB_LOG(FMT, ...)        fprintf(stdout, FMT "\n", ##__VA_ARGS__)
-#define DUB_LOG_PARENT(FMT, ...) DUB_LOG("[parent] " FMT, ##__VA_ARGS__)
-#define DUB_LOG_CHILD(FMT, ...)  DUB_LOG("[child ] " FMT, ##__VA_ARGS__)
+#define GLASS_LOG_ERR(FMT, ...)    fprintf(stderr, "[ERROR ] " FMT "\n", ##__VA_ARGS__)
+#define GLASS_LOG(FMT, ...)        fprintf(stdout, FMT "\n", ##__VA_ARGS__)
+#define GLASS_LOG_PARENT(FMT, ...) GLASS_LOG("[parent] " FMT, ##__VA_ARGS__)
+#define GLASS_LOG_CHILD(FMT, ...)  GLASS_LOG("[child ] " FMT, ##__VA_ARGS__)
 
-#define DUB_SAFECALL(CALL)                                                                                             \
+#define GLASS_SAFECALL(CALL)                                                                                           \
     {                                                                                                                  \
         int err = CALL;                                                                                                \
         if (err == -1)                                                                                                 \
         {                                                                                                              \
-            DUB_LOG_ERR("Call to `" #CALL "` failed");                                                                 \
-            DUB_LOG_ERR("\tMessage: %s", std::strerror(errno));                                                        \
-            DUB_LOG_ERR("\tFile: %s", __FILE__);                                                                       \
-            DUB_LOG_ERR("\tLine: %d", __LINE__);                                                                       \
+            GLASS_LOG_ERR("Call to `" #CALL "` failed");                                                               \
+            GLASS_LOG_ERR("\tMessage: %s", std::strerror(errno));                                                      \
+            GLASS_LOG_ERR("\tFile: %s", __FILE__);                                                                     \
+            GLASS_LOG_ERR("\tLine: %d", __LINE__);                                                                     \
             std::abort();                                                                                              \
         }                                                                                                              \
     }
 
-namespace dub
+namespace glass
 {
 
     int parent_process(int pid);
@@ -37,4 +37,4 @@ namespace dub
     void trace_me();
     void trace_continue(int pid);
 
-} // namespace dub
+} // namespace glass

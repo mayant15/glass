@@ -1,10 +1,10 @@
-#include <dub/dub.h>
+#include <glass/glass.h>
 
-namespace dub
+namespace glass
 {
     int parent_process(int pid)
     {
-        DUB_LOG_PARENT("attached to pid %d", pid);
+        GLASS_LOG_PARENT("attached to pid %d", pid);
 
         int status = 0;
         do
@@ -23,19 +23,19 @@ namespace dub
     int child_process(const char* filename)
     {
         trace_me();
-        DUB_SAFECALL(execl(filename, filename));
+        GLASS_SAFECALL(execl(filename, filename));
         return 0;
     }
 
     void trace_me()
     {
-        DUB_SAFECALL(ptrace(PTRACE_TRACEME));
-        DUB_SAFECALL(std::raise(SIGSTOP));
+        GLASS_SAFECALL(ptrace(PTRACE_TRACEME));
+        GLASS_SAFECALL(std::raise(SIGSTOP));
     }
 
     void trace_continue(int pid)
     {
-        DUB_SAFECALL(ptrace(PTRACE_CONT, pid, 0, 0));
+        GLASS_SAFECALL(ptrace(PTRACE_CONT, pid, 0, 0));
     }
 
-} // namespace dub
+} // namespace glass

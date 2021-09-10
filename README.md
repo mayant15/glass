@@ -1,4 +1,4 @@
-# DUB
+# GLASS
 
 A C++ debugger
 
