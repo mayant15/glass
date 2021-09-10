@@ -1,6 +1,7 @@
 # GLASS
 
-A C++ debugger
+A C++ debugger using Linux `ptrace()` syscalls.
 
-**NOTE:** Only Linux is supported
-
+- `glass/` contains the core standalone library that does all the heavy lifting
+- `cli/` contains the `glass-cli` REPL
+- `test/` contains sample programs to test glass on
