@@ -24,6 +24,7 @@ add_library(glass ${GLASS_LIBRARY_SOURCES})
 
 set(GLASS_EXECUTABLE_SOURCES
     cli/src/main.cpp
+    cli/src/repl.cpp
 )
 
 add_executable(glass-cli ${GLASS_EXECUTABLE_SOURCES})
