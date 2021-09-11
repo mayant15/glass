@@ -20,7 +20,7 @@ namespace glass
             std::cout << "glass> ";
 
             std::string input = "";
-            std::cin >> input;
+            std::getline(std::cin, input);
 
             const auto command = parse(input);
             execute(command);
