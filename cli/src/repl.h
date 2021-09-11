@@ -1,36 +1,14 @@
 #pragma once
 
+#include "command.h"
 #include <iostream>
 
 namespace glass
 {
-    enum class ECommandType
-    {
-        NONE,
-        RUN,
-        BREAK,
-        CONTINUE
-    };
-
-    class ICommand
-    {
-      public:
-        virtual void execute() const = 0;
-    };
-
-    struct CommandNone : ICommand
-    {
-        static inline const ECommandType type = ECommandType::NONE;
-        std::string m_command_string;
-
-        void execute() const override;
-    };
-
     class Repl
     {
       private:
         const char* _filename;
-        bool _done;
 
       public:
         void greet() const;
@@ -38,8 +16,23 @@ namespace glass
         void start();
 
       private:
-        const ICommand* parse(const std::string& str) const;
-        void execute(const ICommand* command) const;
+        /*!
+         * @brief Parse an input string to create a new command structure
+         *
+         * Creates a new object on the heap, make sure to delete!
+         *
+         * @param str Input string to be parsed
+         * @return const cmd::ICommand* Pointer to the created command
+         */
+        const cmd::ICommand* parse(const std::string& str) const;
+
+        /*!
+         * @brief Execute a command object. Deletes the resource when done
+         *
+         * @param cmd Pointer to the command to be executed
+         * @return bool True if we want to terminate the REPL
+         */
+        bool execute(const cmd::ICommand* cmd);
     };
 
 } // namespace glass

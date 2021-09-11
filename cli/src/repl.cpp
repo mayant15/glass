@@ -23,25 +23,27 @@ namespace glass
             std::getline(std::cin, input);
 
             const auto command = parse(input);
-            execute(command);
+            done = execute(command);
         }
     }
 
-    const ICommand* Repl::parse(const std::string& str) const
+    const cmd::ICommand* Repl::parse(const std::string& str) const
     {
-        auto* cmd = new CommandNone;
-        cmd->m_command_string = str;
-        return cmd;
+        if (str == "exit")
+        {
+            return new cmd::Exit;
+        }
+        else
+        {
+            return new cmd::None(str);
+        }
     }
 
-    void Repl::execute(const ICommand* command) const
+    bool Repl::execute(const cmd::ICommand* cmd)
     {
-        command->execute();
-    }
-
-    void CommandNone::execute() const
-    {
-        std::cout << m_command_string << std::endl;
+        bool val = cmd->execute();
+        delete cmd;
+        return val;
     }
 
 } // namespace glass

@@ -38,4 +38,8 @@ namespace glass
         GLASS_SAFECALL(ptrace(PTRACE_CONT, pid, 0, 0));
     }
 
+    void cleanup()
+    {
+    }
+
 } // namespace glass

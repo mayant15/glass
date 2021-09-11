@@ -10,5 +10,6 @@ namespace glass
     int child_process(const char* filename);
     void trace_me();
     void trace_continue(int pid);
+    void cleanup();
 
 } // namespace glass
